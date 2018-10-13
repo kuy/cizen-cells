@@ -22,3 +22,11 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 citadel_echo-*.tar
 
+# Ignore node_modules
+browser/node_modules
+
+# Ignore Parcel cache
+browser/.cache
+
+# Ignore Parcel artifacts
+browser/dist

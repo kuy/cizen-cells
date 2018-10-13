@@ -1,4 +1,6 @@
 %{
   "cizen": {:hex, :cizen, "0.1.0", "5039d3f26a2c2dbdb6ffe046b54475d6fcd6ea198f44dcd25259f2983971633c", [:mix], [{:elixir_uuid, "~> 1.2", [hex: :elixir_uuid, optional: false]}]},
   "elixir_uuid": {:hex, :elixir_uuid, "1.2.0", "ff26e938f95830b1db152cb6e594d711c10c02c6391236900ddd070a6b01271d", [:mix], []},
+  "poison": {:hex, :poison, "3.1.0", "d9eb636610e096f86f25d9a46f35a9facac35609a7591b3be3326e99a0484665", [:mix], []},
+  "socket": {:hex, :socket, "0.3.13", "98a2ab20ce17f95fb512c5cadddba32b57273e0d2dba2d2e5f976c5969d0c632", [:mix], []},
 }

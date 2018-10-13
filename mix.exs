@@ -21,7 +21,9 @@ defmodule CizenCells.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:cizen, "~> 0.1.0"}
+      {:cizen, "~> 0.1.0"},
+      {:poison, "~> 3.1"},
+      {:socket, "~> 0.3"}
     ]
   end
 end

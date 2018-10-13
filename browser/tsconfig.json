@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    /* Basic */
+    "strict": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "downlevelIteration": true,
+
+    /* Additional Checks */
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "outDir": "./build"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "build",
+    "node_modules"
+  ],
+  "typeRoots": [
+    "node_modules/@types", "src/types"
+  ],
+  "parcel-plugin-typescript": {
+    "transpileOnly": false
+  }
+}
