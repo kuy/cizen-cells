@@ -27,7 +27,7 @@ defmodule Main do
       end
 
       perform id, %Dispatch{
-        body: %Energy{x: 2, y: 2, diff: 100.0}
+        body: %Energy{x: 2, y: 2, diff: 150.0}
       }
 
       down_filter = perform id, %Monitor{

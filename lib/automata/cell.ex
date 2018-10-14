@@ -34,7 +34,7 @@ defmodule Cells.Automata.Cell do
       %Tick{} ->
         if value > 0 do
           # Diffusion
-          outflow = value * 0.1
+          outflow = value * 0.2
           Enum.each -1..1, fn dx ->
             Enum.each -1..1, fn dy ->
               if dx != 0 and dy != 0 do
