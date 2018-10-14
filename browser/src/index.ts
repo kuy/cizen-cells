@@ -1,11 +1,10 @@
 import { View } from './view'
-import { Stage, State } from './state'
+import { World, State } from './state'
 
 function main() {
-  const size = { width: 5, height: 5 }
-  const view = new View(size)
-  const state = new State(size)
-  state.onUpdate((data: Stage) => view.update(data))
+  const view = new View()
+  const state = new State()
+  state.onUpdate((data: World) => view.render(data))
 }
 
 document.addEventListener('DOMContentLoaded', main)

@@ -1,8 +1,8 @@
-defmodule Cells.RequestRender do
+defmodule Cells.Tick do
   defstruct []
 end
 
-defmodule Cells.Render do
+defmodule Cells.Update do
   defstruct [:x, :y, :value]
 end
 

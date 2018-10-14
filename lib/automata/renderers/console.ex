@@ -1,6 +1,6 @@
 alias Cizen.Effects.{Receive, Subscribe}
 alias Cizen.EventFilter
-alias Cells.Render
+alias Cells.Update
 
 defmodule Cells.Automata.Renderers.Console do
   use Cizen.Automaton
@@ -10,7 +10,7 @@ defmodule Cells.Automata.Renderers.Console do
   @impl true
   def spawn(id, _) do
     perform id, %Subscribe{
-      event_filter: EventFilter.new(event_type: Render)
+      event_filter: EventFilter.new(event_type: Update)
     }
     :loop
   end
@@ -18,7 +18,7 @@ defmodule Cells.Automata.Renderers.Console do
   @impl true
   def yield(id, :loop) do
     event = perform id, %Receive{}
-    %Render{x: x, y: y, value: value} = event.body
+    %Update{x: x, y: y, value: value} = event.body
     IO.puts "[#{x}, #{y}] value=#{value}"
     :loop
   end

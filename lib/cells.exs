@@ -1,12 +1,16 @@
 alias Cizen.Effects.{Dispatch, Receive, Start, Monitor}
-alias Cells.{RequestRender, Energy}
+alias Cells.Energy
 
 defmodule Main do
   use Cizen.Effectful
 
   def main do
     handle fn id ->
-      renderer_saga_id = perform id, %Start{
+      clock_saga_id = perform id, %Start{
+        saga: %Cells.Automata.Clock{}
+      }
+
+      perform id, %Start{
         saga: %Cells.Automata.Renderers.WebSocket{}
       }
 
@@ -14,8 +18,8 @@ defmodule Main do
       #  saga: %Cells.Automata.Renderers.Console{}
       #}
 
-      Enum.each 0..4, fn x ->
-        Enum.each 0..4, fn y ->
+      Enum.each range(5), fn x ->
+        Enum.each range(5), fn y ->
           perform id, %Start{
             saga: %Cells.Automata.Cell{x: x, y: y, value: 0.0}
           }
@@ -23,27 +27,21 @@ defmodule Main do
       end
 
       perform id, %Dispatch{
-        body: %RequestRender{}
+        body: %Energy{x: 2, y: 2, diff: 100.0}
       }
-
-      perform id, %Dispatch{
-        body: %Energy{x: 2, y: 2, diff: 50.0}
-      }
-
-      Enum.each Stream.interval(500), fn _ ->
-        perform id, %Dispatch{
-          body: %RequestRender{}
-        }
-      end
 
       down_filter = perform id, %Monitor{
-        saga_id: renderer_saga_id
+        saga_id: clock_saga_id
       }
 
       perform id, %Receive{
         event_filter: down_filter
       }
     end
+  end
+
+  def range(n) do
+    %Range{first: 0, last: n - 1}
   end
 end
 

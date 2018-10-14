@@ -22,6 +22,7 @@ defmodule CizenCells.MixProject do
   defp deps do
     [
       {:cizen, "~> 0.1.0"},
+      {:matrix, "~> 0.3.2"},
       {:poison, "~> 3.1"},
       {:socket, "~> 0.3"}
     ]
