@@ -1,5 +1,7 @@
 export type World = number[][]
 
+export type Position = { x: number, y: number }
+
 type UpdateHandler = (data: World) => any
 
 export const range = (n: number): number[] => {
@@ -24,6 +26,10 @@ export class State {
 
   onUpdate = (callback: UpdateHandler) => {
     this.callback = callback
+  }
+
+  poke = (pos: Position) => {
+    this.ws.send(JSON.stringify(pos))
   }
 
   private onOpen = () => {

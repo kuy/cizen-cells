@@ -11,11 +11,11 @@ defmodule Main do
       }
 
       perform id, %Start{
-        saga: %Cells.Automata.Renderers.WebSocket{}
+        saga: %Cells.Automata.Views.WebSocket{}
       }
 
       #perform id, %Start{
-      #  saga: %Cells.Automata.Renderers.Console{}
+      #  saga: %Cells.Automata.Views.Console{}
       #}
 
       Enum.each range(5), fn x ->

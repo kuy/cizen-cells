@@ -1,5 +1,5 @@
 import { CubeDimension, CubeColor, PixelView, Point, Point3D, Cube } from 'obelisk.js'
-import { World } from './state'
+import { World, Position } from './state'
 
 const CUBE_SIZE = 16
 const CUBE_HEIGHT = 12
@@ -21,13 +21,22 @@ const dimOf = (value: number): CubeDimension => {
   return new CubeDimension(CUBE_SIZE, CUBE_SIZE, Math.round(CUBE_HEIGHT + value))
 }
 
-class View {
+
+type ClickHandler = (pos: Position) => any
+
+export class View {
   view: PixelView
+  offset: Point
+  origin: Point
+  callback: ClickHandler | null = null
 
   constructor() {
     const canvas = document.getElementById('cizen-cells') as HTMLCanvasElement
-    const point = new Point(300, 200)
-    this.view = new PixelView(canvas, point)
+    this.origin = new Point(300, 200)
+    this.view = new PixelView(canvas, this.origin)
+    this.offset = new Point(canvas.offsetLeft, canvas.offsetTop)
+
+    canvas.addEventListener('mousedown', this.onDown)
   }
 
   render(data: World) {
@@ -40,6 +49,26 @@ class View {
       }
     }
   }
-}
 
-export { View }
+  onClick = (callback: ClickHandler) => {
+    this.callback = callback
+  }
+
+  private onDown = (ev: MouseEvent) => {
+    if (this.callback) {
+      const px = ev.pageX - this.offset.x
+      const py = ev.pageY - this.offset.y
+
+      const lx = px - this.origin.x
+      const ly = py - this.origin.y
+
+      const qx = ly + lx * 0.5
+      const qy = ly - lx * 0.5
+
+      const bx = Math.floor(qx / CUBE_SIZE)
+      const by = Math.floor(qy / CUBE_SIZE)
+
+      this.callback({ x: bx, y: by })
+    }
+  }
+}

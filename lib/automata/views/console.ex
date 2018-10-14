@@ -2,7 +2,7 @@ alias Cizen.Effects.{Receive, Subscribe}
 alias Cizen.EventFilter
 alias Cells.Update
 
-defmodule Cells.Automata.Renderers.Console do
+defmodule Cells.Automata.Views.Console do
   use Cizen.Automaton
 
   defstruct []

@@ -1,8 +1,33 @@
-alias Cizen.Effects.{Receive, Subscribe}
+alias Cizen.Effects.{Start, Dispatch, Receive, Subscribe}
 alias Cizen.EventFilter
-alias Cells.{Tick, Update}
+alias Cells.{Tick, Update, Energy}
 
-defmodule Cells.Automata.Renderers.WebSocket do
+defmodule Cells.Point do
+  defstruct [:x, :y]
+end
+
+defmodule Cells.Automata.Views.WebSocketInput do
+  use Cizen.Automaton
+
+  defstruct [:client]
+
+  @impl true
+  def spawn(_, %{client: client}) do
+    {client}
+  end
+
+  @impl true
+  def yield(id, {client}) do
+    { :text, raw } = client |> Socket.Web.recv!
+    %Cells.Point{:x => x, :y => y} = Poison.decode!(raw, as: %Cells.Point{})
+    perform id, %Dispatch{
+      body: %Energy{x: x, y: y, diff: 50.0}
+    }
+    {client}
+  end
+end
+
+defmodule Cells.Automata.Views.WebSocket do
   use Cizen.Automaton
 
   defstruct []
@@ -20,6 +45,10 @@ defmodule Cells.Automata.Renderers.WebSocket do
     client = server |> Socket.Web.accept!
     client |> Socket.Web.accept!
 
+    perform id, %Start{
+      saga: %Cells.Automata.Views.WebSocketInput{client: client}
+    }
+
     {client, %{}}
   end
 
@@ -31,7 +60,7 @@ defmodule Cells.Automata.Renderers.WebSocket do
         matrix = state
           |> Map.to_list
           |> Enum.reduce(Matrix.new(5, 5), fn {{x, y}, value}, acc ->
-            Matrix.set(acc, x, y, value)
+            Matrix.set(acc, y, x, value)
           end)
         client
           |> Socket.Web.send!({:text, Poison.encode!(matrix)})
