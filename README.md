@@ -1,6 +1,6 @@
 # CizenCells
 
-[![Cizen Cells](http://img.youtube.com/vi/0yBxz6vr03o/hqdefault.jpg)](https://youtu.be/0yBxz6vr03o)
+![Cizen Cells][5x5input]
 
 ## Server
 
@@ -29,3 +29,5 @@ yarn
 ```bash
 yarn start
 ```
+
+[5x5input]: https://github.com/kuy/cizen-cells/raw/master/misc/5x5input.gif
