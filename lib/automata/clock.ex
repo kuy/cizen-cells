@@ -1,5 +1,5 @@
 alias Cizen.Effects.Dispatch
-alias Cells.Tick
+alias Cells.Events.Tick
 
 defmodule Cells.Automata.Clock do
   use Cizen.Automaton

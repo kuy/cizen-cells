@@ -1,6 +1,7 @@
 alias Cizen.Effects.{Dispatch, Receive, Subscribe}
 alias Cizen.{Event, Filter}
 alias Cells.{Tick, Update, Energy}
+alias Cells.Events.{Tick, Update, Energy}
 
 defmodule Cells.Automata.Cell do
   use Cizen.Automaton

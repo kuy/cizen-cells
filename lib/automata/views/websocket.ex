@@ -1,6 +1,6 @@
 alias Cizen.Effects.{Start, Dispatch, Receive, Subscribe}
 alias Cizen.{Event, Filter}
-alias Cells.{Tick, Update, Energy}
+alias Cells.Events.{Tick, Update, Energy}
 
 defmodule Cells.Point do
   defstruct [:x, :y]

@@ -1,5 +1,5 @@
 alias Cizen.Effects.{Dispatch, Receive, Start, Monitor}
-alias Cells.Energy
+alias Cells.Events.Energy
 
 defmodule Main do
   use Cizen.Effectful
@@ -26,6 +26,7 @@ defmodule Main do
         end
       end
 
+      # Put initial energy
       perform id, %Dispatch{
         body: %Energy{x: 2, y: 2, diff: 150.0}
       }

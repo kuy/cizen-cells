@@ -1,6 +1,6 @@
 alias Cizen.Effects.{Receive, Subscribe}
 alias Cizen.{Event, Filter}
-alias Cells.Update
+alias Cells.Events.Update
 
 defmodule Cells.Automata.Views.Console do
   use Cizen.Automaton
