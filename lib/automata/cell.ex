@@ -15,8 +15,11 @@ defmodule Cells.Automata.Cell do
     }
 
     perform id, %Subscribe{
-      # TODO: Use 'event_body_filters' to get events targeted to me
-      event_filter: Filter.new(fn %Event{body: %Energy{}} -> true end)
+      event_filter: Filter.new(
+        fn %Event{body: %Energy{x: ex, y: ey}} ->
+          x == ex and y == ey
+        end
+      )
     }
 
     # Initial updating
@@ -31,7 +34,7 @@ defmodule Cells.Automata.Cell do
   def yield(id, {x, y, value}) do
     event = perform id, %Receive{}
     case event.body do
-      %Energy{x: ex, y: ey, diff: diff} when x == ex and y == ey ->
+      %Energy{x: x, y: y, diff: diff} ->
         {x, y, value + diff}
       %Tick{} ->
         if value > 0 do
