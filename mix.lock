@@ -1,5 +1,5 @@
 %{
-  "cizen": {:hex, :cizen, "0.1.0", "5039d3f26a2c2dbdb6ffe046b54475d6fcd6ea198f44dcd25259f2983971633c", [:mix], [{:elixir_uuid, "~> 1.2", [hex: :elixir_uuid, optional: false]}]},
+  "cizen": {:hex, :cizen, "0.12.1", "5a29c7551e8647441c5b67fcf5ca207f5e5ae228926b8b1c63d689ffc30d0a06", [:mix], [{:elixir_uuid, "~> 1.2", [hex: :elixir_uuid, optional: false]}]},
   "elixir_uuid": {:hex, :elixir_uuid, "1.2.0", "ff26e938f95830b1db152cb6e594d711c10c02c6391236900ddd070a6b01271d", [:mix], []},
   "exprintf": {:hex, :exprintf, "0.2.1", "b7e895dfb00520cfb7fc1671303b63b37dc3897c59be7cbf1ae62f766a8a0314", [:mix], []},
   "matrix": {:hex, :matrix, "0.3.2", "9c826bc3a1117bf5e1c5cdcf3a3d95456c93bc2e127a04e363e9fc90b724f784", [:mix], [{:exprintf, "~> 0.1", [hex: :exprintf, optional: false]}]},

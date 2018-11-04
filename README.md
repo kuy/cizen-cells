@@ -17,7 +17,7 @@ mix deps.get
 ### Run
 
 ```bash
-mix run cells.exs
+mix run lib/cells.exs
 ```
 
 ## Client (Web)

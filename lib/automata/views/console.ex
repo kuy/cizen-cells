@@ -1,5 +1,5 @@
 alias Cizen.Effects.{Receive, Subscribe}
-alias Cizen.EventFilter
+alias Cizen.{Event, Filter}
 alias Cells.Update
 
 defmodule Cells.Automata.Views.Console do
@@ -10,7 +10,7 @@ defmodule Cells.Automata.Views.Console do
   @impl true
   def spawn(id, _) do
     perform id, %Subscribe{
-      event_filter: EventFilter.new(event_type: Update)
+      event_filter: Filter.new(fn %Event{body: %Update{}} -> true end)
     }
     :loop
   end

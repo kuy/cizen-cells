@@ -1,5 +1,5 @@
 alias Cizen.Effects.{Dispatch, Receive, Subscribe}
-alias Cizen.EventFilter
+alias Cizen.{Event, Filter}
 alias Cells.{Tick, Update, Energy}
 
 defmodule Cells.Automata.Cell do
@@ -10,11 +10,12 @@ defmodule Cells.Automata.Cell do
   @impl true
   def spawn(id, %{x: x, y: y, value: value}) do
     perform id, %Subscribe{
-      event_filter: EventFilter.new(event_type: Tick)
+      event_filter: Filter.new(fn %Event{body: %Tick{}} -> true end)
     }
+
     perform id, %Subscribe{
       # TODO: Use 'event_body_filters' to get events targeted to me
-      event_filter: EventFilter.new(event_type: Energy)
+      event_filter: Filter.new(fn %Event{body: %Energy{}} -> true end)
     }
 
     # Initial updating
